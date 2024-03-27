@@ -1,7 +1,12 @@
 import readlinesync = require("readline-sync")
+import { Conta } from "./src/model/Conta"
 
 export function main() {
     let opcao: number
+    
+    // teste para visualizar conta 
+    const cliente1: Conta = new Conta(1, 123, 1, "João da Silva", 1000)
+    cliente1.visualizar()
 
     while(true) {
         console.log("*****************************************************")
@@ -21,7 +26,6 @@ export function main() {
         console.log("          9 - Sair                                   ")
         console.log("                                                     ")
         console.log("*****************************************************")
-        console.log("                                                     ")
 
         console.log("Entre com a opção desejada: ")
         opcao = readlinesync.questionInt("")
@@ -35,37 +39,50 @@ export function main() {
         switch(opcao) {
             case 1:
                 console.log("\nCriar conta")
+                keyPress()
                 break
             case 2:
                 console.log("\nListar todas as contas")
+                keyPress()
                 break
             case 3:
                 console.log("\nBuscar conta por número")
+                keyPress()
                 break
             case 4:
                 console.log("\nAtualizar dados da conta")
+                keyPress()
                 break
             case 5:
                 console.log("\nApagar conta")
+                keyPress()
                 break
             case 6: 
                 console.log("\nSaque")
+                keyPress()
                 break
             case 7: 
                 console.log("\nDepósito")
+                keyPress()
                 break
             case 8:
                 console.log("\nTransferência entre contas")
+                keyPress()
                 break
             default:
                 console.log("\nOpção inválida!")
+                keyPress()
                 break
         }
     }
 }
 
-function about() {
-    console.log(`Projeto desenvolvido por: Beatriz \nGeneration Brasil \github.com/beatrizalsilva`)
+function keyPress(): void {
+    console.log("\nPressione enter para continuar...")
+}
+
+function about(): void {
+    console.log(`Projeto desenvolvido por: Beatriz Alves \nGeneration Brasil \ngithub.com/beatrizalsilva`)
 }
 
 main()
