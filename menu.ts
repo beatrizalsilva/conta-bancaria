@@ -1,22 +1,16 @@
 import readlinesync = require("readline-sync")
-import { Conta } from "./src/model/Conta"
 import { ContaCorrente } from "./src/model/ContaCorrente"
 import { ContaPoupanca } from "./src/model/ContaPoupanca"
 
 export function main() {
     let opcao: number
     
-    // teste para visualizar conta 
-    const cliente1: Conta = new Conta(1, 123, 1, "João da Silva", 1000)
-    cliente1.sacar(1500)
+    // testes
+    const cliente1: ContaCorrente = new ContaCorrente(1, 456, 1, "Laura Gonçalves", 13000, 1000)
     cliente1.visualizar()
 
-    const cliente2: ContaCorrente = new ContaCorrente(2, 456, 1, "Laura Gonçalves", 13000, 1000)
+    const cliente2: ContaPoupanca = new ContaPoupanca(2, 123, 2, "Oliver Queen", 2000000000, 16)
     cliente2.visualizar()
-
-    const cliente3: ContaCorrente = new ContaCorrente(3, 789, 2, "Oliver Queen", 2000000000 , 5000)
-    cliente3.depositar(5000)
-    cliente3.visualizar()
 
     while(true) {
         console.log("*****************************************************")
