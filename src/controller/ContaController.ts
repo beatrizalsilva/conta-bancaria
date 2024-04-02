@@ -10,7 +10,7 @@ export class ContaController implements ContaRepository {
         if(buscaConta != null) {
             buscaConta.visualizar()
         } else {
-            console.log(`A conta némro: ${numero} não foi encontrada.`)
+            console.log(`A conta número ${numero} não foi encontrada.`)
         }
     }
 
@@ -20,16 +20,16 @@ export class ContaController implements ContaRepository {
 
     cadastrar(conta: Conta): void {
         this.listaContas.push(conta) 
-        console.log(`\nA conta número: ` + conta.numero + ` foi criada com sucesso`)
+        console.log(`A conta número ${conta.numero} foi criada com sucesso.`)
     }
 
     atualizar(conta: Conta): void {
         let buscaConta = this.buscarNoArray(conta.numero)
         if(buscaConta != null) {
             this.listaContas[this.listaContas.indexOf(buscaConta)] = conta
-            console.log(`A conta número: ${conta.numero} foi atualizada com sucesso.`)
+            console.log(`A conta número ${conta.numero} foi atualizada com sucesso.`)
         } else {
-            console.log(`A conta número: ${conta.numero} não foi encontrada.`)
+            console.log(`A conta número ${conta.numero} não foi encontrada.`)
         }
     }
 
@@ -43,14 +43,39 @@ export class ContaController implements ContaRepository {
         }
     }
 
+    // métodos bancários
     sacar(numero: number, valor: number): void {
-        throw new Error("Method not implemented.")
+        let conta = this.buscarNoArray(numero)
+        if(conta != null) {
+            if(conta.sacar(valor) == true) {
+                console.log(`O saque na conta ${numero} foi efetuado com sucesso`)
+            }
+        } else {
+            console.log(`A conta número ${numero} não foi encontrada.`)
+        }
     }
+
     depositar(numero: number, valor: number): void {
-        throw new Error("Method not implemented.")
+        let conta = this.buscarNoArray(numero)
+        if(conta != null) {
+            conta.depositar(valor)
+            console.log(`O depósito na conta número ${numero} foi efetuado com sucesso.`)
+        } else {
+            console.log(`A conta número ${numero} não foi encontrada.`)
+        }
     }
+
     transferir(numeroOrigem: number, numeroDestino: number, valor: number): void {
-        throw new Error("Method not implemented.")
+        let contaOrigem = this.buscarNoArray(numeroOrigem)
+        let contaDestino = this.buscarNoArray(numeroDestino)
+        if(contaOrigem != null && contaDestino != null) {
+            if(contaOrigem.sacar(valor) == true) {
+                contaDestino.depositar(valor)
+                console.log(`A transferência da conta número ${numeroOrigem} para a conta número ${numeroDestino} foi efetuada com sucesso.`)
+            }
+        } else {
+            console.log(`A conta número ${numeroOrigem} e/ou a conta número ${numeroDestino} não foram encontradas.`)
+        }
     }
 
     // gerar automáticamente o número da conta (método auxiliar)
@@ -59,9 +84,9 @@ export class ContaController implements ContaRepository {
     }
 
     // verifica a existência da conta
-    public buscarNoArray(numero: number): Conta | null {
+    public buscarNoArray(Number: number): Conta | null {
         for(let conta of this.listaContas) {
-            if(conta.numero === numero) {
+            if(conta.numero === Number) {
                 return conta
             }
         }
