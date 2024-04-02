@@ -26,14 +26,15 @@ export function main() {
         console.log("          6 - Saque                                  ")
         console.log("          7 - Depositar                              ")
         console.log("          8 - Transferir valor entre contas          ")
-        console.log("          9 - Sair                                   ")
+        console.log("          9 - Buscar conta por titular               ")
+        console.log("          0 - Sair                                   ")
         console.log("                                                     ")
         console.log("*****************************************************")
 
         console.log("Entre com a opção desejada: ")
         opcao = readlinesync.questionInt("")
 
-        if(opcao == 9) {
+        if(opcao == 0) {
             console.log("\nBanco do Brazil com Z - O seu futuro começa aqui!")
             about()
             process.exit(0)
@@ -148,6 +149,13 @@ export function main() {
                 contas.transferir(numero, numeroDestino, valor)
                 keyPress()
                 break
+            case 9: 
+                console.log("\nBuscar conta por titular")
+                console.log("Digite o Nome do titular: ")
+                titular = readlinesync.question("")
+                contas.procurarPorTitular(titular)
+                keyPress()
+                break
             default:
                 console.log("\nOpção inválida!")
                 keyPress()
@@ -162,7 +170,7 @@ function keyPress(): void {
 }
 
 function about(): void {
-    console.log(`Projeto desenvolvido por: Beatriz Alves \nGeneration Brasil \ngithub.com/beatrizalsilva`)
+    console.log(`Projeto desenvolvido por: Beatriz Alves \ngithub.com/beatrizalsilva`)
 }
 
 main()

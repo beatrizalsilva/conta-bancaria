@@ -2,6 +2,7 @@ import { Conta } from "../model/Conta"
 
 export interface ContaRepository {
     //CRUD da conta
+    procurarPorTitular(titular: string): void
     procurarPorNumero (numero: number): void
     listarTodas(): void
     cadastrar(conta: Conta): void

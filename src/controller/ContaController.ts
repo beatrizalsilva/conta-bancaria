@@ -5,6 +5,13 @@ export class ContaController implements ContaRepository {
     private listaContas: Array<Conta> = new Array<Conta>() //armazena os dados da conta
     numero: number = 0
 
+    procurarPorTitular(titular: string): void {
+        let listaContasPorTitular = this.listaContas.filter(c => c.titular.toUpperCase().includes(titular.toUpperCase()))
+        for (let conta of listaContasPorTitular) {
+            conta.visualizar()
+        }
+    }
+
     procurarPorNumero(numero: number): void {
         let buscaConta = this.buscarNoArray(numero)
         if(buscaConta != null) {
